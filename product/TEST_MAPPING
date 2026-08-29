@@ -1,0 +1,7 @@
+{
+  "presubmit": [
+      {"name": "VehicleDiagnosticsBoundaryTests"},
+      {"name": "carservice_unit_test"},
+      {"name": "vehiclehal_test"}
+  ]
+}
