@@ -1,0 +1,36 @@
+package { default_applicable_licenses: ["Android-Apache-2.0"] }
+
+java_library {
+    name: "VehicleDiagnosticsApiBoundary",
+    srcs: [
+        "car-lib/src/android/car/diagnostic/**/*.java",
+        "car-lib/src/android/car/diagnostic/**/*.aidl",
+        "car-lib/src/android/car/telemetry/**/*.java",
+        "car-lib/src/android/car/telemetry/**/*.aidl",
+        "car-lib/src/android/car/watchdog/**/*.java",
+        "car-lib/src/android/car/watchdog/**/*.aidl",
+        "car-lib/src/android/car/vms/**/*.java",
+        "car-lib/src/android/car/vms/**/*.aidl",
+    ],
+    platform_apis: true,
+}
+
+android_library {
+    name: "VehicleDiagnosticsServiceBoundary",
+    srcs: [
+        "service/src/com/android/car/CarDiagnosticService.java",
+        "service/src/com/android/car/telemetry/**/*.java",
+        "service/src/com/android/car/vms/**/*.java",
+        "service/src/com/android/car/watchdog/**/*.java",
+        "service/src/com/android/car/hal/**/*.java",
+    ],
+    static_libs: ["VehicleDiagnosticsApiBoundary"],
+    platform_apis: true,
+}
+
+android_library {
+    name: "VehicleDiagnosticsBoundaryTests",
+    srcs: ["tests/**/*Diagnostic*Test.java", "tests/**/*Telemetry*Test.java", "tests/**/*Watchdog*Test.java"],
+    static_libs: ["VehicleDiagnosticsServiceBoundary"],
+    platform_apis: true,
+}
