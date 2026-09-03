@@ -1,0 +1,6 @@
+
+syntax = "proto3";
+package cockpit.vehicle_diagnostics.v2;
+message VehicleDiagnosticsRequest { uint32 id = 1; double severity = 2; uint64 sequence = 3; }
+message VehicleDiagnosticsEvent { uint32 id = 1; double severity = 2; uint64 sequence = 3; int32 error_code = 4; }
+service VehicleDiagnosticsService { rpc Transact(VehicleDiagnosticsRequest) returns (VehicleDiagnosticsEvent); }

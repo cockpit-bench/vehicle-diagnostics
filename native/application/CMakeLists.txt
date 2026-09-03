@@ -1,0 +1,2 @@
+add_executable(fw07_vehicle_diagnostics_daemon src/main.cpp)
+target_link_libraries(fw07_vehicle_diagnostics_daemon PRIVATE fw07_middleware fw07_hal fw07_platform)

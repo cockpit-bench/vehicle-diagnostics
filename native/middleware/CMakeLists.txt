@@ -1,0 +1,3 @@
+add_library(fw07_middleware src/vehicle_diagnostics_service.cpp)
+target_include_directories(fw07_middleware PUBLIC include)
+target_link_libraries(fw07_middleware PUBLIC fw07_contract fw07_platform)

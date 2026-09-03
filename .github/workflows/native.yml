@@ -1,0 +1,17 @@
+
+name: Native build test and coverage
+on: [push, pull_request]
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install gcovr==7.2
+      - run: cmake -S native -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS='--coverage'
+      - run: cmake --build build --parallel
+      - run: ctest --test-dir build --output-on-failure
+      - run: gcovr --root native --xml coverage.xml --fail-under-line 60
+      - uses: actions/upload-artifact@v4
+        with: { name: native-coverage, path: coverage.xml }

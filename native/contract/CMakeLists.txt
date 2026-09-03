@@ -1,0 +1,3 @@
+add_library(fw07_contract INTERFACE)
+target_include_directories(fw07_contract INTERFACE include)
+target_link_libraries(fw07_contract INTERFACE fw07_common)

@@ -1,0 +1,12 @@
+
+include(FetchContent)
+find_package(GTest 1.14.0 EXACT CONFIG QUIET)
+if(NOT GTest_FOUND)
+  FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz URL_HASH SHA256=8ad598c73ad796e0d8280b082cebd82a630d73e73cd3c70057938a6501bba5d7 DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+  set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+  FetchContent_MakeAvailable(googletest)
+endif()
+add_executable(fw07_integration_test vehicle_diagnostics_integration_test.cpp)
+target_link_libraries(fw07_integration_test PRIVATE fw07_middleware fw07_hal fw07_platform GTest::gtest_main GTest::gmock)
+include(GoogleTest)
+gtest_discover_tests(fw07_integration_test)

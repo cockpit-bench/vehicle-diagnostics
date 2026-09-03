@@ -1,0 +1,2 @@
+add_library(fw07_common INTERFACE)
+target_include_directories(fw07_common INTERFACE include)
