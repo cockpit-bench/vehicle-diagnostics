@@ -12,6 +12,6 @@ jobs:
       - run: cmake -S native -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS='--coverage'
       - run: cmake --build build --parallel
       - run: ctest --test-dir build --output-on-failure
-      - run: gcovr --root . --filter '^native/' --object-directory build --xml coverage.xml --fail-under-line 60
+      - run: gcovr --root . --filter '^native/' --object-directory build --gcov-ignore-errors=no_working_dir_found --xml coverage.xml --fail-under-line 60
       - uses: actions/upload-artifact@v4
         with: { name: native-coverage, path: coverage.xml }
